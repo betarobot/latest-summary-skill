@@ -1,6 +1,6 @@
-# 📋 Latest Summary Skill
+# 📋 Work Summary Skill
 
-> AI coding assistant skill that generates comprehensive work summaries for any project.
+> AI coding assistant skill that generates comprehensive work summaries for any project across multiple timeframes.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -8,10 +8,10 @@
 
 | Feature | Description |
 |---------|-------------|
-| 📅 **7-day activity log** | Detailed breakdown of recent work |
+| 📅 **Multiple timeframes** | 7 days, 30 days, 90 days, 180 days |
 | 🔍 **Workspace-aware** | Auto-detects current project context |
 | 📁 **Local-only output** | Automatically added to `.gitignore` |
-| 📊 **Structured format** | Tables, status indicators, file links |
+| 📊 **Adaptive detail** | More detail for recent, high-level for long-term |
 | 🔄 **Regeneratable** | Run anytime to get updated summary |
 
 ## 🚀 Installation
@@ -20,7 +20,7 @@
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/latest-summary-skill.git
+git clone https://github.com/betarobot/latest-summary-skill.git
 
 # Copy to skills directory
 cp -r latest-summary-skill ~/.gemini/skills/latest-summary
@@ -34,71 +34,110 @@ cp -r latest-summary-skill ~/.gemini/skills/latest-summary
 
 ## 📖 Usage
 
-### Command
+### Commands
 
-```
-/latest
-```
+| Command | Period | Output | Detail Level |
+|---------|--------|--------|--------------|
+| `/latest` | 7 days | `latest.md` | Daily breakdown |
+| `/monthly` | 30 days | `monthly.md` | Weekly grouped |
+| `/quarterly` | 90 days | `quarterly.md` | Feature-level |
+| `/biannual` | 180 days | `biannual.md` | Executive summary |
 
 ### Natural Language
 
-- "What did we do recently?"
-- "Generate a work summary"
-- "Show me the last week's activity"
-- "Create an activity log"
+- "What did we do recently?" → 7-day summary
+- "Monthly summary" → 30-day summary
+- "Quarterly review" → 90-day summary
+- "Six month overview" → 180-day summary
 
 ## 📄 Output
 
-The skill creates `latest.md` in your workspace root:
+Creates summary files in your workspace root:
 
 ```
 your-project/
-├── latest.md          ← Generated summary
-├── .gitignore         ← Auto-updated to include latest.md
+├── latest.md          ← 7-day detailed log
+├── monthly.md         ← 30-day weekly summary
+├── quarterly.md       ← 90-day feature summary
+├── biannual.md        ← 180-day executive overview
+├── .gitignore         ← Auto-updated
 └── ...
 ```
 
-### Sample Output Structure
+### Detail Levels by Timeframe
+
+| Timeframe | Grouping | Focus |
+|-----------|----------|-------|
+| **7 days** | Daily | Every task, file change, decision |
+| **30 days** | Weekly | Themes, milestones, key changes |
+| **90 days** | Monthly | Features, architecture, metrics |
+| **180 days** | Quarterly | Strategic overview, lessons learned |
+
+## 📋 Sample Outputs
+
+<details>
+<summary><strong>7-Day Summary (detailed)</strong></summary>
 
 ```markdown
 # Work Summary: Last 7 Days
 
-**Generated**: 2026-02-04 22:00
-**Period**: 2026-01-28 to 2026-02-04
-**Project**: My Awesome Project
-
-## Overview
-Brief summary of major accomplishments...
-
 ## Detailed Activity Log
 ### 2026-02-04 - Tuesday
 #### Feature Implementation
-**Objective**: What the user wanted to achieve
-**Work Performed**: Detailed steps taken
-**Files Modified**: List of changed files
+**Objective**: Add user authentication
+**Work Performed**:
+- Created auth middleware
+- Implemented JWT tokens
+**Files Modified**:
+- `src/auth/middleware.js` - New file
 **Outcome**: ✅ Completed
-
-## Summary of Changes
-| File | Changes |
-|------|---------|
-| `src/app.js` | Added new feature |
-
-## Technical Decisions
-- **Decision**: Rationale explained
-
-## Pending Items
-- [ ] Outstanding tasks
 ```
+</details>
+
+<details>
+<summary><strong>30-Day Summary (weekly)</strong></summary>
+
+```markdown
+# Work Summary: Last 30 Days
+
+## Week-by-Week Summary
+### Week of Jan 28 - Feb 3
+**Focus Areas**: Authentication, Testing
+
+| Task | Status | Key Changes |
+|------|--------|-------------|
+| User auth | ✅ | JWT implementation |
+| Test suite | ✅ | 80% coverage |
+```
+</details>
+
+<details>
+<summary><strong>90/180-Day Summary (strategic)</strong></summary>
+
+```markdown
+# Work Summary: Last 90 Days
+
+## Executive Summary
+Major platform overhaul including authentication system,
+performance optimizations, and Drupal 11 migration.
+
+## Major Features & Initiatives
+### Authentication System
+**Timeline**: Dec 2025 - Jan 2026
+**Status**: Completed
+```
+</details>
 
 ## ⚙️ Customization
 
-Edit `SKILL.md` to customize:
+Edit `SKILL.md` to adjust:
 
-| Setting | Default | Description |
+| Setting | Options | Description |
 |---------|---------|-------------|
-| Time period | 7 days | How far back to look |
-| Output file | `latest.md` | Generated filename |
-| Detail level | Verbose | Amount of information |
+| Timeframes | 7/30/90/180 days | Coverage period |
+| Output files | `*.md` | Generated filenames |
+| Detail level | Verbose/Summary | Information depth |
+| Grouping | Daily/Weekly/Monthly | How to organize |
 
 ## 🤝 Contributing
 
