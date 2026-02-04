@@ -8,11 +8,11 @@
 
 | Feature | Description |
 |---------|-------------|
-| 📁 **Single history file** | All work in one organized document |
-| 📅 **Period-based structure** | Week → Month → Quarter → Archive |
-| 🔍 **Progressive detail** | More detail for recent, summarized for older |
-| 🔄 **Regeneratable** | Run anytime to refresh |
-| 📁 **Local-only** | Auto-added to `.gitignore` |
+| 📁 **Single history file** | All work in one organized `history.md` |
+| 📅 **Period-based structure** | Week → Month → Quarter → 6 Months → Archive |
+| 🔍 **Progressive detail** | Full detail for recent, summarized for older |
+| 🔄 **Regeneratable** | Run anytime to refresh with latest |
+| 🔒 **Local-only** | Auto-added to `.gitignore` |
 
 ## 🚀 Installation
 
@@ -28,48 +28,92 @@ cp -r latest-summary-skill ~/.gemini/skills/latest-summary
 /latest
 ```
 
-Or ask: "Show project history", "What did we do?", "Work summary"
+Or natural language:
+- "Show project history"
+- "What did we do?"
+- "Work summary"
+- "Activity log"
 
 ## 📄 Output Structure
 
-Creates `history.md` in your workspace root:
+Creates `history.md` in your workspace root with these sections:
+
+```
+📅 This Week          → Daily breakdown with full details
+📆 Last 30 Days       → Weekly summaries with themes
+📊 Last 90 Days       → Monthly feature summaries
+📈 Last 180 Days      → Quarterly strategic overview
+🗂️ Archive            → Condensed historical record
+📌 Pending Items      → Outstanding tasks
+📝 Notes              → Lessons learned
+```
+
+## 📊 Detail by Period
+
+| Period | Grouping | What's Included |
+|--------|----------|-----------------|
+| This week | Daily | Every task, file path, decision, code changes |
+| 30 days | Weekly | Themes, key outcomes, decision rationale |
+| 90 days | Monthly | Features delivered, milestones, metrics |
+| 180 days | Quarterly | Strategic overview, architecture changes |
+| Archive | Yearly | One-line summaries per month |
+
+## 📋 Sample Output
 
 ```markdown
 # Project History
 
+**Project**: My Project  
+**Last Updated**: 2026-02-04 23:00
+
+---
+
 ## 📅 This Week
-> Daily breakdown with full details
-- Every task, file change, decision
 
-## 📆 Last 30 Days  
-> Weekly summaries
-- Grouped by week, themes, key outcomes
+### Tuesday, 2026-02-04
 
-## 📊 Last 90 Days
-> Monthly feature summaries
-- Milestones, features delivered
+#### Feature Implementation
+**Objective**: Add user authentication
 
-## 📈 Last 180 Days
-> Quarterly strategic overview
-- Major initiatives, architecture changes
+**Work Done**:
+- Created auth middleware
+- Implemented JWT tokens
+- Added session management
 
-## 🗂️ Archive
-> Historical record (condensed)
-- One-line per month for older work
+**Files Changed**:
+- `src/auth/middleware.js` - New auth handler
+
+**Status**: ✅ Completed
+
+---
+
+## 📆 Last 30 Days
+
+### Week of Jan 28 - Feb 3
+**Themes**: Authentication, Testing
+
+| Task | Status | Summary |
+|------|--------|---------|
+| User auth | ✅ | JWT implementation |
+| Test suite | ✅ | 80% coverage |
+
+---
 
 ## 📌 Pending Items
-- Outstanding tasks carried forward
+
+- [ ] Add password reset flow
+- [ ] Improve test coverage
 ```
 
-## 📊 Detail Levels
+## ⚙️ Customization
 
-| Period | Grouping | What's Included |
-|--------|----------|-----------------|
-| This week | Daily | Tasks, files, decisions, code |
-| 30 days | Weekly | Themes, key outcomes, tables |
-| 90 days | Monthly | Features, milestones |
-| 180 days | Quarterly | Strategic overview |
-| Archive | Yearly | One-line summaries |
+Edit `SKILL.md` to adjust:
+
+| Setting | Default | Description |
+|---------|---------|-------------|
+| Output file | `history.md` | Generated filename |
+| Detail levels | Progressive | How much info per period |
+| Status indicators | ✅ 🔄 🔍 ❌ | Task outcome markers |
 
 ## 🤝 Contributing
 
