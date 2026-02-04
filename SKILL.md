@@ -1,226 +1,143 @@
 ---
 name: work-summary
-description: Generate detailed markdown summaries of recent work on the current workspace. Supports multiple timeframes - /latest (7 days), /monthly (30 days), /quarterly (90 days), /biannual (180 days).
+description: Generate a structured work history document organized by time periods. Invoke with /latest or when asking for work summary, activity log, or project history.
 ---
 
 # Work Summary Skill
 
-Generate comprehensive work summaries in the **current workspace root** for various timeframes.
+Generate `history.md` in the **current workspace root** - a comprehensive work log organized by time periods.
 
-## Commands
+## Command
 
-| Command | Period | Output File |
-|---------|--------|-------------|
-| `/latest` | Last 7 days | `latest.md` |
-| `/monthly` | Last 30 days | `monthly.md` |
-| `/quarterly` | Last 90 days | `quarterly.md` |
-| `/biannual` | Last 180 days | `biannual.md` |
+```
+/latest
+```
+
+Or natural language: "What did we do?", "Show project history", "Work summary"
 
 ## Behavior
 
 1. **Detect workspace root** from active workspace URI
-2. **Scan conversation history** for the specified period on this workspace
-3. **Generate the appropriate `.md` file** in the workspace root
-4. **Update `.gitignore`** to include the generated file (keeps summaries local-only)
+2. **Scan conversation history** for all available work on this workspace
+3. **Generate `history.md`** organized by periods
+4. **Update `.gitignore`** to include `history.md`
 
-## Output Format
-
-### Short-term (7 days): Detailed Daily Log
+## Output Structure
 
 ```markdown
-# Work Summary: Last 7 Days
+# Project History
 
-**Generated**: [YYYY-MM-DD HH:MM]  
-**Period**: [Start Date] to [End Date]  
 **Project**: [Workspace/Project Name]  
-**Workspace**: [Full workspace path]
+**Workspace**: [Full workspace path]  
+**Last Updated**: [YYYY-MM-DD HH:MM]
 
 ---
 
-## Overview
-[2-3 sentence summary of major accomplishments]
+## 📅 This Week
+> Detailed daily breakdown of current week's work
+
+### [Day, Date]
+
+#### [Task Title]
+**Objective**: [Goal]
+
+**Work Done**:
+- [Detailed action]
+- [Specific change]
+
+**Files Changed**:
+- `path/to/file` - [What changed]
+
+**Status**: ✅ Completed
 
 ---
 
-## Detailed Activity Log
-
-### [YYYY-MM-DD] - [Day of Week]
-
-#### [Task/Conversation Title]
-**Objective**: [What the user wanted to achieve]
-
-**Work Performed**:
-- [Detailed description of actions taken]
-- [Specific steps and decisions made]
-
-**Files Modified**:
-- `path/to/file` - [Description of changes]
-
-**Outcome**: [✅ Completed | 🔄 In Progress | 🔍 Investigation | ❌ Blocked]
-
----
-
-## Summary of Changes
-
-### Files Created
-| File | Purpose |
-|------|---------|
-| `path/to/file` | [Description] |
-
-### Files Modified
-| File | Changes Made |
-|------|--------------|
-| `path/to/file` | [Description] |
-
----
-
-## Technical Decisions
-- **[Decision]**: [Rationale and alternatives considered]
-
----
-
-## Issues & Resolutions
-| Issue | Resolution |
-|-------|------------|
-| [Problem] | [Solution] |
-
----
-
-## Pending Items
-- [ ] [Task with context]
-
----
-
-## Notes
-[Additional context or observations]
-```
-
-### Medium-term (30 days): Weekly Grouped Summary
-
-```markdown
-# Work Summary: Last 30 Days
-
-**Generated**: [YYYY-MM-DD HH:MM]  
-**Period**: [Start Date] to [End Date]  
-**Project**: [Workspace/Project Name]
-
----
-
-## Overview
-[High-level summary of the month's accomplishments, themes, and progress]
-
----
-
-## Week-by-Week Summary
+## 📆 Last 30 Days
+> Weekly summaries of the past month
 
 ### Week of [Date Range]
-**Focus Areas**: [Main themes of work]
+**Themes**: [Main focus areas]
 
-| Task | Status | Key Changes |
-|------|--------|-------------|
-| [Task name] | ✅ | [Brief description] |
+| Task | Status | Summary |
+|------|--------|---------|
+| [Task] | ✅ | [Brief outcome] |
 
----
-
-## Major Milestones
-- [Milestone 1]: [Description and date]
-- [Milestone 2]: [Description and date]
+**Key Decisions**:
+- [Decision]: [Rationale]
 
 ---
 
-## Key Files Changed
-| File | Type of Changes |
-|------|-----------------|
-| `path/to/file` | [Created/Modified/Refactored] |
+## 📊 Last 90 Days
+> Monthly feature-level summaries
+
+### [Month Year]
+**Highlights**:
+- [Major accomplishment 1]
+- [Major accomplishment 2]
+
+**Features Delivered**:
+| Feature | Status | Impact |
+|---------|--------|--------|
+| [Feature] | ✅ | [Result] |
 
 ---
 
-## Technical Decisions Made
-| Decision | Rationale | Date |
-|----------|-----------|------|
-| [Decision] | [Why] | [When] |
+## 📈 Last 180 Days
+> Quarterly strategic overview
+
+### Q[N] [Year]
+**Executive Summary**: [Paragraph on major achievements]
+
+**Initiatives**:
+- **[Initiative]**: [Status and outcome]
+
+**Architecture Changes**:
+| System | Change | Reason |
+|--------|--------|--------|
+| [Component] | [What] | [Why] |
 
 ---
 
-## Recurring Issues
-| Issue | Occurrences | Final Resolution |
-|-------|-------------|------------------|
-| [Issue] | [Count] | [How resolved] |
+## 🗂️ Archive
+> Older history beyond 6 months (condensed)
+
+### [Year]
+- **[Month]**: [One-line summary of major work]
 
 ---
 
-## Pending Items
-- [ ] [Carried over tasks]
-```
+## 📌 Pending Items
 
-### Long-term (90/180 days): High-Level Feature Summary
-
-```markdown
-# Work Summary: Last [90/180] Days
-
-**Generated**: [YYYY-MM-DD HH:MM]  
-**Period**: [Start Date] to [End Date]  
-**Project**: [Workspace/Project Name]
+- [ ] [Outstanding task 1]
+- [ ] [Outstanding task 2]
 
 ---
 
-## Executive Summary
-[Paragraph summarizing major achievements, project evolution, and key milestones]
+## 📝 Notes & Lessons Learned
 
----
-
-## Major Features & Initiatives
-
-### [Feature/Initiative Name]
-**Timeline**: [Start] - [End]  
-**Status**: [Completed/Ongoing/Paused]
-
-**Description**: [What was built/changed]
-
-**Key Accomplishments**:
-- [Accomplishment 1]
-- [Accomplishment 2]
-
----
-
-## Architecture Changes
-| Component | Change | Impact |
-|-----------|--------|--------|
-| [Component] | [What changed] | [Effect] |
-
----
-
-## Key Metrics (if applicable)
-- Files created: [count]
-- Files modified: [count]
-- Major features: [count]
-- Bug fixes: [count]
-
----
-
-## Technical Debt Addressed
-| Area | What was done |
-|------|---------------|
-| [Area] | [Description] |
-
----
-
-## Lessons Learned
-- [Lesson 1]
-- [Lesson 2]
-
----
-
-## Looking Forward
-- [ ] Planned features/improvements
-- [ ] Known issues to address
+- [Insight or pattern observed]
 ```
 
 ## Guidelines
 
-- **7 days**: Maximum detail - include all conversations, file paths, code changes
-- **30 days**: Group by week, summarize daily work into themes
-- **90/180 days**: Feature-level view, focus on milestones and impact
-- **Use tables**: For structured, scannable information
-- **Track outcomes**: ✅ 🔄 🔍 ❌ status indicators
-- **Link files**: `[filename](file:///absolute/path)`
+### Detail by Period
+| Period | Grouping | Detail Level |
+|--------|----------|--------------|
+| This week | Daily | Full task breakdown, all files, decisions |
+| Last 30 days | Weekly | Theme summaries, key outcomes |
+| Last 90 days | Monthly | Feature-level, milestones |
+| Last 180 days | Quarterly | Strategic, high-impact items only |
+| Archive | Yearly | One-line per month |
+
+### Formatting Rules
+- **Most recent first** within each section
+- **Progressive summarization** - more detail for recent work
+- **Link files**: `[filename](file:///path)`
+- **Status indicators**: ✅ 🔄 🔍 ❌
+- **Tables** for structured comparisons
+- **Collapse older sections** if document gets long
+
+### When to Update
+- Run `/latest` to regenerate with current history
+- Previous content is replaced with fresh scan
+- Pending items carry forward between updates
