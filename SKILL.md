@@ -17,10 +17,15 @@ Or natural language: "What did we do?", "Show project history" (current project 
 
 ## Behavior
 
-1. **Detect workspace root** from active workspace URI
+1. **Detect workspace root** from active workspace URI (e.g., `/Users/robo/Sites/calligaris-d8`)
 2. **Determine Scope**:
-   - **Default**: Scan conversation history **ONLY** for work related to the **current project/workspace**. Exclude unrelated tasks.
-   - **Flag `-all`**: Scan conversation history for **ALL** work across all projects/workspaces.
+   - **Default (Current Project Only)**: 
+     - Scan conversation history **ONLY** for work related to the **current workspace**.
+     - **CRITICAL**: Exclude ALL tasks that modified files outside this workspace (unless they were global config changes).
+     - **Verify**: If a conversation was about "Project B" and you are in "Project A", **DO NOT INCLUDE IT**.
+     - **Filter**: Check file paths in the conversation logs. If they don't match the current workspace path, exclude the item.
+   - **Flag `-all` (Global)**: 
+     - Scan conversation history for **ALL** work across all projects/workspaces.
 3. **Generate `history.md`** organized by periods
 4. **Update `.gitignore`** to include `history.md`
 
