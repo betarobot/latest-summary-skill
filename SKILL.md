@@ -10,15 +10,17 @@ Generate `history.md` in the **current workspace root** - a comprehensive work l
 ## Command
 
 ```
-/latest
+/latest [-all]
 ```
 
-Or natural language: "What did we do?", "Show project history", "Work summary"
+Or natural language: "What did we do?", "Show project history" (current project only), "Show all history" (all projects)
 
 ## Behavior
 
 1. **Detect workspace root** from active workspace URI
-2. **Scan conversation history** for all available work on this workspace
+2. **Determine Scope**:
+   - **Default**: Scan conversation history **ONLY** for work related to the **current project/workspace**. Exclude unrelated tasks.
+   - **Flag `-all`**: Scan conversation history for **ALL** work across all projects/workspaces.
 3. **Generate `history.md`** organized by periods
 4. **Update `.gitignore`** to include `history.md`
 

@@ -24,14 +24,22 @@ cp -r latest-summary-skill ~/.gemini/skills/latest-summary
 
 ## 📖 Usage
 
+### Default (Current Project Only)
 ```
 /latest
 ```
+Generates history **only** for the project you are currently working in.
 
-Or natural language:
-- "Show project history"
-- "What did we do?"
-- "Work summary"
+### Global (All Projects)
+```
+/latest -all
+```
+Generates history including **all** work across all projects/workspaces.
+
+### Natural Language
+- "Show project history" (Current project)
+- "What did we do in this repo?" (Current project)
+- "Show me everything I've worked on recently" (Global)
 - "Activity log"
 
 ## 📄 Output Structure
